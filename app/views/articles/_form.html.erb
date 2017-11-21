@@ -2,19 +2,21 @@
   <%= form_for(@article) do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
-
+    <br>
     <%= f.label :content %>
     <%= f.hidden_field :content, id: 'content' %>
 
-    <div id="editor">Clément suce une boule</div>
-    <script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
-    </script>
+    <div id="editor"></div>
+
 
     <%= f.submit %>
+
+    <script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
     <script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/twilight");
+      value = document.getElementById('content').value;
+      editor.setValue(value);
       editor = document.getElementById('editor');
       editor.addEventListener('keyup', (event) => {
         document.getElementById('content').value = editor.querySelector('.ace_content').innerText;
