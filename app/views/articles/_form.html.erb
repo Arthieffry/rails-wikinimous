@@ -4,14 +4,22 @@
     <%= f.text_field :title %>
 
     <%= f.label :content %>
+    <%= f.hidden_field :content, id: 'content' %>
 
-<div id="editor"><%= f.text_field :content %></div>
-<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-</script>
+    <div id="editor">Clément suce une boule</div>
+    <script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/twilight");
+    </script>
 
     <%= f.submit %>
+    <script>
+      editor = document.getElementById('editor');
+      editor.addEventListener('keyup', (event) => {
+        document.getElementById('content').value = editor.querySelector('.ace_content').innerText;
+        });
+    </script>
   <% end %>
 </div>
 
