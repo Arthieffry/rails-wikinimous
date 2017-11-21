@@ -1,0 +1,10 @@
+
+<h1><%= @article.title %></h1>
+
+<%= @markdown %>
+<%= link_to "Article list", articles_path %>
+<br>
+<%= link_to "Delete", article_path(@article),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+<%= link_to "Edit this article", edit_article_path %>

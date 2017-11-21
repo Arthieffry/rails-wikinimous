@@ -1,0 +1,9 @@
+<ol>
+  <% @articles.each do |article| %>
+    <%= link_to article_path(article), class: "article" do %>
+      <h3><%= article.title %></h3>
+      <p><%= Kramdown::Document.new(article.content).to_html.html_safe %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ol>
